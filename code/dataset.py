@@ -61,6 +61,15 @@ class ImageDataset(Dataset):
         img = img
         return img
 
+# resized image tensor to 9-bit LongTensor
+def rgb_to_palette(pixels, kmeans):
+    batch_size, n_channel, h, w = pixels.size()
+    pixels = pixels.permute(0,2,3,1).reshape(batch_size*h*w, 3)
+    nbit = kmeans.predict(pixels.numpy().astype(np.float32))
+    nbit = torch.LongTensor(nbit.reshape(batch_size, h*w))
+    return nbit 
+
+
 
         
 

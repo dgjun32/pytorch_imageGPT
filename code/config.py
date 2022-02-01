@@ -11,3 +11,5 @@ config.model = edict()
 config.model.name = 'igpt_s'
 config.model.img_size = 32
 
+config.train = edict()
+
